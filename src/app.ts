@@ -11,7 +11,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://your-frontend.vercel.app",
+      "queick-hire-frontend.vercel.app",
     ],
     credentials: true,
   })

@@ -4,12 +4,22 @@ import JobRouter from "./modules/job/job.route";
 import ApplicationRouter from "./modules/application/application.route";
 import AuthRouter from "./modules/auth/auth.route";
 import CategoryRouter from "./modules/category/category.routes";
- 
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://your-frontend.vercel.app",
+    ],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
+
+ 
 
 app.use("/category", CategoryRouter);
 app.use("/job", JobRouter);

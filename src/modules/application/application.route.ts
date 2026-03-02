@@ -4,25 +4,25 @@ import { authenticate } from "../middlewares/auth.middleware";
  
  
 
-const router = Router();
+const ApplicationRouter = Router();
 
-router.post(
+ApplicationRouter.post(
   "/:id",
   authenticate,
   ApplicationController.applyForJob
 );
 
-router.get(
+ApplicationRouter.get(
   "/my",
   authenticate,
   ApplicationController.getMyApplications
 );
 
-router.get(
+ApplicationRouter.get(
   "/",
    
   authenticate,
   ApplicationController.getAllApplications
 );
 
-export default router;
+export default ApplicationRouter;

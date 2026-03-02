@@ -9,6 +9,12 @@ const db_1 = require("./config/db");
 dotenv_1.default.config();
 const PORT = process.env.PORT || 5000;
 (0, db_1.connectDB)();
+app_1.default.get("/", (req, res) => {
+    res.status(200).json({
+        success: true,
+        message: "🚀 Server is running successfully",
+    });
+});
 app_1.default.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
 });

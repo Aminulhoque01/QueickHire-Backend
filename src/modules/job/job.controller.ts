@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { JobService } from "./job.service";
+ 
 
 const createJob = async (req: Request, res: Response) => {
   try {
@@ -49,6 +50,8 @@ const getAllJobs = async (req: Request, res: Response) => {
   });
 };
 
+
+
 const getSingleJob = async (req: Request, res: Response) => {
   const result = await JobService.getSingleJob(req.params.id as string);
   res.status(200).json({
@@ -70,5 +73,6 @@ export const JobController = {
   getAllJobs,
   getSingleJob,
   deleteJob,
-  updateJob
+  updateJob,
+  
 };

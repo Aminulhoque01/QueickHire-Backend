@@ -46,23 +46,21 @@ const updateJob = async (id: string, payload: any) => {
 };
 
 const getAllJobs = async (query: any) => {
-  const { search, category, location, page = 1, limit = 5 } = query;
+  const { title, workPlace, page = 1, limit = 10 } = query;
 
   const filter: any = {};
 
-  if (search) {
-    filter.$or = [
-      { title: { $regex: search, $options: "i" } },
-      { location: { $regex: search, $options: "i" } },
-    ];
-  }
+  // 🔥 Title OR Location
+  if (title || workPlace) {
+    filter.$or = [];
 
-  if (category) {
-    filter.category = category;
-  }
+    if (title) {
+      filter.$or.push({ title: { $regex: title, $options: "i" } });
+    }
 
-  if (location) {
-    filter.location = { $regex: location, $options: "i" };
+    if (workPlace) {
+      filter.$or.push({ workPlace: { $regex: workPlace, $options: "i" } });
+    }
   }
 
   const skip = (Number(page) - 1) * Number(limit);
@@ -87,7 +85,7 @@ const getAllJobs = async (query: any) => {
 
 
 const getSingleJob = async (id: string) => {
-  return await Job.findById(id);
+  return await Job.findById(id).populate("category", "name");
 };
 
 const deleteJob = async (id: string) => {

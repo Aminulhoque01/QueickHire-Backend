@@ -8,6 +8,7 @@ export interface IJob extends Document {
   description: string;
   category: mongoose.Types.ObjectId;
   jobType:string,
+  workPlace:string,
   price:number
 }
 
@@ -17,6 +18,7 @@ const jobSchema = new Schema<IJob>(
     image: { type: String, required: true },
     company: { type: String, required: true },
     location: { type: String, required: true },
+    workPlace:{ type: String, required: true },
     description: { type: String, required: true },
     jobType:{type:String, required:true},
     category: {

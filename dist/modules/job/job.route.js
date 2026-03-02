@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const job_controller_1 = require("./job.controller");
+const auth_middleware_1 = require("../middlewares/auth.middleware");
+const upload_middleware_1 = require("../middlewares/upload.middleware");
+const JobRouter = (0, express_1.Router)();
+JobRouter.get("/", job_controller_1.JobController.getAllJobs);
+JobRouter.get("/:id", job_controller_1.JobController.getSingleJob);
+JobRouter.post("/", auth_middleware_1.authenticate, upload_middleware_1.upload.single("image"), job_controller_1.JobController.createJob);
+JobRouter.patch("/:id", auth_middleware_1.authenticate, job_controller_1.JobController.updateJob);
+JobRouter.delete("/:id", auth_middleware_1.authenticate, job_controller_1.JobController.deleteJob);
+exports.default = JobRouter;

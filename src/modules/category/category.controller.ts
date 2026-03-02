@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import * as categoryService from "./category.service";
+import { Job } from "../job/job.model";
 
 export const createCategory = async (req: Request, res: Response) => {
   try {
@@ -32,6 +33,21 @@ export const getCategories = async (req: Request, res: Response) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const getCategoryStats = async (req: Request, res: Response) => {
+  try {
+    const data = await categoryService.getCategoryJobCount();
+    res.status(200).json({
+      success: true,
+      data,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+}; 
 
 export const deleteCategory = async (req: Request, res: Response) => {
   try {

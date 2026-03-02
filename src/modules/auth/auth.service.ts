@@ -27,13 +27,15 @@ const signinUser = async (email: string, password: string) => {
   }
 
   const token = jwt.sign(
-    { id: user._id, role: user.role },
+    { id: user._id, email:user.email, name:user.name, role: user.role },
     process.env.JWT_SECRET as string,
     { expiresIn: "1d" }
   );
 
   return { token };
 };
+
+
 
 export const AuthService = {
   signupUser,

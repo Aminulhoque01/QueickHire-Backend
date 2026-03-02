@@ -13,9 +13,7 @@ const getMyApplications = async (userId: string) => {
 
 const getAllApplications = async () => {
   return await Application.find()
-    .populate("jobId")
-    .populate("userId", "name email role")
-    .sort({ createdAt: -1 });
+   
 };
 
 export const ApplicationService = {

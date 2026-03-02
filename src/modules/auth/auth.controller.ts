@@ -23,6 +23,8 @@ const signin = async (req: Request, res: Response) => {
   });
 };
 
+
+
 export const AuthController = {
   signup,
   signin
